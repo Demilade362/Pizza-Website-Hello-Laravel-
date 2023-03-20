@@ -9,8 +9,6 @@ class PizzaController extends Controller
 {
     public function index()
     {
-        // $pizzas = Pizzas::all();
-        // $pizzas = Pizzas::where('id', 2)->get();
         $pizzas = Pizza::orderBy('id', 'DESC')->get();
         return view('pizzas.index', [
             "pizzas" => $pizzas,
@@ -27,7 +25,10 @@ class PizzaController extends Controller
 
     public function create()
     {
-        return view('pizzas.create');
+        $type = request('type');
+        return view('pizzas.create', [
+            "PizzaType" => $type
+        ]);
     }
 
     public function store()
