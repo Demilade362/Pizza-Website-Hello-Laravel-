@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+
 
 Route::get('/pizzas', 'App\Http\Controllers\PizzaController@index')->name("pizzas.index")->middleware('auth');
 Route::get('/pizzas/create/{type}', 'App\Http\Controllers\PizzaController@create')->name("pizzas.create");
