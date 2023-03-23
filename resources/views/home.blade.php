@@ -17,7 +17,7 @@
                         <p class="mb-3">{{ __('You are logged in!') }}</p>
                         <div class="d-flex justify-content-between">
                             <p>Hello {{ Auth::user()->name }}</p>
-                            <p><a href="/pizzas">View Pizzas</a></p>
+                            <p><a href="{{ url('/') }}">Order Pizzas</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app');
 @section('content')
-    <div id="carouselExampleCaptions" class="carousel slide d-md-none d-lg-block d-xl-block" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide d-none d-lg-block d-xl-block" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -41,117 +41,44 @@
         @endif
         <h1 class="display-5 mb-5 text-center">Order your Pizza</h1>
         <div class="row justify-content-between mb-4">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza1.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Tasty Veg Pizza</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 5000</h5>
-                            <a href="{{ route('pizzas.create', 'Tasty-Veg-Pizza') }}?price='5000'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
+            @foreach ($products as $product)
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-img-top">
+                            <img src="{{ $product->picture }}" class="img-fluid" alt="{{ $product->picture }}">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h5>{{ $product->name }}</h5>
+                                <p>{{ $product->description }}</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <form action="{{ route('pizzas.cart') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="picture" value="{{ $product->picture }}">
+                                        <input type="hidden" name="name" value="{{ $product->name }}">
+                                        <input type="hidden" name="price" value="{{ $product->price }}">
+                                        <input type="hidden" name="description" value="{{ $product->description }}">
+                                        <button type="submit" class="btn btn-light d-flex align-items-center">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-cart4  me-2" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                                </svg>
+                                            </span>
+                                            <span>Add to Cart</span>
+                                        </button>
+                                    </form>
+                                    <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
+                                </div>
+                                <a href="{{ route('pizzas.create', $product->name) }}?price='{{ $product->price }}'"
+                                    class="btn btn-primary col-12">Order
+                                    Pizza</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza2.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Volcano</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 6500</h5>
-                            <a href="{{ route('pizzas.create', 'volcano') }}?price='6500'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza3.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Hawaiian</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 3500</h5>
-                            <a href="{{ route('pizzas.create', 'Hawaiian') }}?price='3500'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-between">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza4.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Pepperoni</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 4500</h5>
-                            <a href="{{ route('pizzas.create', 'Pepperoni') }}?price='4500'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza3.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Thin Garlic Crust</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 2500</h5>
-                            <a href="{{ route('pizzas.create', 'Thin-Garlic-Crust') }}?price='2500'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-img-top">
-                        <img src="assets/pizza1.jfif" class="img-fluid" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h5>Veg Supreme</h5>
-                            <p>Tasty Looking Attractive Pizza for The People who love tomatoes Be sure to order to has a
-                                unique taste</p>
-                            <h5 class="lead text-end mb-3">&#8358; 6000</h5>
-                            <a href="{{ route('pizzas.create', 'Veg-Supreme') }}?price='6000'"
-                                class="btn btn-primary col-12">Order
-                                Pizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="mt-4">
             <div class="row align-items-center">

@@ -45,3 +45,10 @@
     margin: -590px auto 0 auto;
     z-index: 400 !important;
 }
+
+@media screen and (max-width: 991px) {
+    #pizza {
+        margin: 2rem auto 0 auto;
+        z-index: 400 !important;
+    }
+}

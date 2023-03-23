@@ -16,6 +16,7 @@ class PizzaController extends Controller
         ]);
     }
 
+
     public function show($id)
     {
         $pizza = Pizza::findorFail($id);
@@ -33,6 +34,7 @@ class PizzaController extends Controller
             'price' => $price
         ]);
     }
+
 
     public function store(StorePizza $request)
     {
