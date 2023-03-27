@@ -1,15 +1,15 @@
 {
-    "name": "PizzaHouse",
+    "name": "laravel/laravel",
     "type": "project",
-    "description": "The Best Pizza Bakery. To Order your Pizza",
+    "description": "The Laravel Framework.",
     "keywords": [
-        "Pizza",
-        "House",
-        "PizzaHouse"
+        "framework",
+        "laravel"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "backpack/crud": "^5.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
@@ -17,6 +17,7 @@
         "laravel/ui": "^4.2"
     },
     "require-dev": {
+        "backpack/generators": "^3.3",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

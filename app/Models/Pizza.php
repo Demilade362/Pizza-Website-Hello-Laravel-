@@ -11,4 +11,13 @@ class Pizza extends Model
     protected $casts = [
         'toppings' => 'array',
     ];
+
+    protected $fillable = [
+        'name',
+        'type',
+        'base',
+        'toppings',
+        'address',
+        'price'
+    ];
 }

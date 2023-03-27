@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'About')
+
 @section('content')
     <div class="container mb-5 p-5 bg-white" style="margin-top: 4rem">
         <h6 class="display-6">

@@ -1,4 +1,9 @@
 @extends('layouts.app');
+
+@section('title')
+    {{ $pizza->name }}
+@endsection
+
 @section('content')
     <div class="my-5 p-4 shadow-sm bg-white border-10 myContainer">
         <h1 class="h2 mb-5 text-end">Order For {{ $pizza->name }}</h1>
@@ -7,11 +12,15 @@
         <p class="lead">Address: {{ $pizza->address }}</p>
         <p class="lead">Extra Toppings:</p>
         <ul>
-            @foreach ($pizza->toppings as $toppings)
-                <li>{{ $toppings }}</li>
-            @endforeach
+            @if ($pizza->toppings)
+                @foreach ($pizza->toppings as $toppings)
+                    <li>{{ $toppings }}</li>
+                @endforeach
+            @else
+                <p>No Toppings</p>
+            @endif
         </ul>
-        <p class='lead'>Price: &#8358;{{$pizza->price}}</p>
+        <p class='lead'>Price: &#8358;{{ $pizza->price }}</p>
         <form action="{{ route('pizzas.destroy', $pizza->id) }}" method="POST">
             @csrf
             @method('delete')

@@ -22,11 +22,11 @@ class StorePizza extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => "required",
             'type' => 'required',
+            'base' => 'required',
             'address' => 'required',
-            'toppings' => 'required',
-            'price' => 'required'
+            'price' => 'required',
         ];
     }
 }

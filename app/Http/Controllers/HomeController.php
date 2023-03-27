@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
@@ -11,18 +15,26 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Product $product, Cart $cart)
     {
-        return view('home');
+        if (Schema::hasTable('carts')) {
+            $carts = $cart->where('usersID',  Auth::id())
+                ->orderBy('id', 'DESC')
+                ->lazy();
+        }
+
+        session(['carts' => count($carts)]);
+
+        $products = $product->latest()
+            ->get();
+        return view('home', [
+            "products" => $products
+        ]);
     }
 }

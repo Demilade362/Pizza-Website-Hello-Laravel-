@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section('title', 'Reset Password | Email')
+
 @section('content')
-    <div class="container" style="margin-top: 10rem">
+    <div class="container" style="margin: 10rem auto">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

@@ -1,8 +1,15 @@
 @extends('layouts.app');
+
+@section('title', 'Pizza Orders')
+
 @section('content')
     <div class="my-5 listContainer bg-white p-4">
         <h1 class="display-5 mb-4 text-center">Pizza Orders</h1>
-        <p>{{ session('message') }}</p>
+        @if (session('message'))
+            <div class="alert alert-success text-center">
+                <p>{{ session('message') }}</p>
+            </div>
+        @endif
         <ul class="list-group">
             @foreach ($pizzas as $pizza)
                 <li class="list-group-item d-lg-flex justify-content-between">

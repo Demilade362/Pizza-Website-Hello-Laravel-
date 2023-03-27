@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pizza;
+use App\Models\Product;
 use App\Http\Requests\StorePizza;
+use Illuminate\Support\Facades\Auth;
 
 class PizzaController extends Controller
 {
@@ -25,32 +27,32 @@ class PizzaController extends Controller
         ]);
     }
 
-    public function create()
+    public function create($id)
     {
-        $type = request('type');
-        $price = request('price');
+        $pizzas = Product::findorFail($id);
         return view('pizzas.create', [
-            "PizzaType" => $type,
-            'price' => $price
+            'pizza' => $pizzas
         ]);
     }
 
 
     public function store(StorePizza $request)
     {
-        $pizzas = new Pizza();
-        if ($request->all()) {
-            $pizzas->name = request('name');
-            $pizzas->type = request('type');
-            $pizzas->base = request('base');
-            $pizzas->toppings = request('toppings');
-            $pizzas->address = request('address');
-            $pizzas->price = request('price');
 
-            $pizzas->save();
-            $name = request('name');
-            return redirect("/")->with('mssg', "Thanks for Ordering $name");
+        $request->validated();
+
+        $pizzas = Pizza::create([
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'base' => $request->input('base'),
+            'toppings' => request('toppings'),
+            'address' => $request->input('address'),
+            'price' => $request->input('price'),
+        ]);
+        if (Auth::check()) {
+            $username = Auth::user()->name;
         }
+        return redirect("/pizzas/products")->with('mssg', "Thanks for Ordering $username");
     }
 
     public function destroy($id)

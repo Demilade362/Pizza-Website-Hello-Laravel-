@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,7 +19,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="../../assets/pizza.png" class="img-fluid mb-2" width="40" height="40"
@@ -48,13 +48,6 @@
                                 </span>
                                 <span>
                                     Home
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('pizzas.products') }}" class="nav-link active d-flex align-items-center">
-                                <span>
-                                    All Pizzas
                                 </span>
                             </a>
                         </li>
@@ -114,7 +107,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="{{ route('pizzas.cart') }}" class="nav-link active d-flex align-items-center">
+                                <a href="{{ route('carts.get') }}" class="nav-link active d-flex align-items-center">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-cart4 me-2" viewBox="0 0 16 16">
@@ -122,26 +115,50 @@
                                                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                                         </svg>
                                     </span>
-                                    Cart</a>
+                                    Cart
+                                    @if (Auth::user()->verify)
+                                        @if (session('carts') != 0)
+                                            <div class="badge bg-danger rounded-circle ms-2"
+                                                style="
+                                        position: relative;
+                                        top: -8px;
+
+                                    ">
+                                                {{ session('carts') ?? '0' }}
+                                            </div>
+                                        @endif
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href={{ route('home') }} class="nav-link d-flex align-items-center active">
+                                    <span>
+                                        <img src="../assets/pizza.png" alt="" class="img-fluid me-2" width="20"
+                                            height="20">
+                                    </span>
+                                    All Pizzas</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle active" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle active" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href={{ route('home') }} class="dropdown-item d-flex align-items-center">
-                                        <span>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        {{-- <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-journal me-2" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                                <path
-                                                    d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                                                fill="currentColor" class="bi bi-box-arrow-in-right me-2"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                                             </svg>
-                                        </span>
-                                        Dashboard</a>
+                                        </span> --}}
+                                        Settings
+                                    </a>
                                     <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -179,7 +196,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 d-flex align-items-center">
                         <span class="me-3">
-                            <img src="../assets/pizza.png" alt="" class="imf-fluid" width="50"
+                            <img src="../../assets/pizza.png" alt="" class="img-fluid" width="50"
                                 height="50">
                         </span>
                         <span>
