@@ -7,4 +7,4 @@
 <p>As an Admin, you could confirm the order</p>
 <p>As an Admin, you could view all orders</p>
 <h3>Authentication</h3>
-<p>Only for Staff Only. Just to complete and View Orders</p>
+<p>For all Users and Admin Also</p>
