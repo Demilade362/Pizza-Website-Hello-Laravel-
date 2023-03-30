@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\UserRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserCrudController
@@ -63,7 +64,7 @@ class UserCrudController extends CrudController
         CRUD::field('password')->validationRules('required');
 
         \App\Models\User::creating(function ($entry) {
-            $entry->password = \Hash::make($entry->password);
+            $entry->password = Hash::make($entry->password);
         });
 
         // CRUD::field('name');
@@ -93,7 +94,7 @@ class UserCrudController extends CrudController
             if (request('password') == null) {
                 $entry->password = $entry->getOriginal('password');
             } else {
-                $entry->password = \Hash::make(request('password'));
+                $entry->password = Hash::make(request('password'));
             }
         });
         // $this->setupCreateOperation();

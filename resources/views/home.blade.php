@@ -3,7 +3,7 @@
 @section('title', 'Pizzas')
 
 @section('content')
-    <div class="container bg-white p-lg-5 rounded" style="margin-top:5rem;">
+    <div class="container bg-white rounded" style="margin-top:5rem;">
         @if (session('mssg'))
             <div class="alert alert-success text-center">
                 <span class="lead">{{ session('mssg') }}</span>
@@ -41,7 +41,7 @@
                                     </form>
                                     <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
                                 </div>
-                                <a href={{ route('pizzas.create', $product->id) }} class="btn btn-primary d-block">Order
+                                <a href={{ route('orders.create', $product->id) }} class="btn btn-primary d-block">Order
                                     Pizza</a>
                             </div>
                         </div>

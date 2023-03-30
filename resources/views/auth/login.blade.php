@@ -19,7 +19,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="form-control bg-white @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
@@ -36,8 +36,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                        class="form-control bg-white @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">

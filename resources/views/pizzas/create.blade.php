@@ -7,14 +7,13 @@
         <div class="form bg-white p-5 border-2">
             <h1 class="text-center mb-3 display-4">Order Your Pizza</h1>
             @if ($pizza)
-                <form action={{ route('pizzas.store') }} method="POST">
+                <form action={{ route('orders.store') }} method="POST">
                     @csrf
-                    <label for="name" class="form-label">Your Name:</label>
-                    <input type="text" name="name" class="form-control mb-3">
+                    <input type="hidden" value="{{ Auth::user()->name }}" name="name" class="form-control mb-3">
                     @if ($errors->has('name'))
                         <p class="text-danger">{{ $errors->first('name') }}</p>
                     @endif
-                    <label for="type" class="form-label">Choose Pizza Type:</label>
+                    <label for="type" class="form-label">Pizza Type:</label>
                     <select name="type" id="type" class="form-select mb-3">
                         <option value="{{ $pizza->name }}">{{ $pizza->name }}</option>
                     </select>

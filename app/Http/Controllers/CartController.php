@@ -13,12 +13,8 @@ class CartController extends Controller
     public function index()
     {
 
-        if (Schema::hasTable('carts')) {
-            $cart = Cart::where('usersID', Auth::id())
-                ->orderBy('id', 'DESC')
-                ->lazy();
-        }
-        session(['carts' => count($cart)]);
+        $cart = User::findorFail(Auth::id())->carts;
+
         return view('cart.carts', [
             'carts' => $cart
         ]);
@@ -28,15 +24,21 @@ class CartController extends Controller
     {
         $addCart = new Cart();
 
-        $addCart->picture = request('picture');
-        $addCart->name = request('name');
-        $addCart->price = request('price');
-        $addCart->description = request('description');
-        $addCart->productID = request('productsId');
-        $addCart->usersID = Auth::user()->id;
+        try {
+            $addCart->picture = request('picture');
+            $addCart->name = request('name');
+            $addCart->price = request('price');
+            $addCart->description = request('description');
+            $addCart->productID = request('productsId');
+            $addCart->usersID = Auth::user()->id;
+            $mssg = 'success';
 
-        $addCart->save();
-        return redirect('/cart')->with('mssg', 'Added to Cart Successfully');
+            $addCart->save();
+        } catch (\Throwable $th) {
+            $mssg = "warning";
+        }
+
+        return redirect('/cart')->with('mssg', $mssg);
     }
 
     public function destroy($id)

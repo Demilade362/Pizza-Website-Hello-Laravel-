@@ -32,11 +32,11 @@
                     <h5>Pepperoni</h5>
                     <p>Pepperoni Pizza is full of Pepper and Attractive, nice looking Pizza to the eye</p>
                 </div>
-                <img src="assets/pizza3.jfif" class="d-block img-fluid" alt="...">
+                <img src="assets/pizza4.jfif" class="d-block img-fluid" alt="...">
             </div>
         </div>
     </div>
-    <div class="container bg-white p-lg-5" id="pizza">
+    <div class="container bg-white" id="pizza">
         <h1 class="display-5 mb-5 pt-5 text-center">Order your Pizza</h1>
         <div class="row justify-content-between mb-4">
             @foreach ($products as $product)
@@ -72,7 +72,7 @@
                                     @endauth
                                     <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
                                 </div>
-                                <a href={{ route('pizzas.create', $product->id) }} class="btn btn-primary d-block">Order
+                                <a href={{ route('orders.create', $product->id) }} class="btn btn-primary d-block">Order
                                     Pizza</a>
                             </div>
                         </div>

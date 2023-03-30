@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('carts', function (Blueprint $table) {
+            $table->engine = 'innoDB';
             $table->id();
             $table->timestamps();
             $table->BigInteger('usersID')->unsigned();
             $table->foreign('usersId')->references('id')->on('users')->onDelete('cascade');
             $table->string('picture');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('price');
             $table->string('description');
             $table->bigInteger('productID')->unsigned();

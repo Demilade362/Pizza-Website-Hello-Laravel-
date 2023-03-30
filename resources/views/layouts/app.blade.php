@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('cart4.svg') }}" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,7 +20,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="../../assets/pizza.png" class="img-fluid mb-2" width="40" height="40"
@@ -116,7 +117,7 @@
                                         </svg>
                                     </span>
                                     Cart
-                                    @if (Auth::user()->verify)
+                                    @if (Auth::user())
                                         @if (session('carts') != 0)
                                             <div class="badge bg-danger rounded-circle ms-2"
                                                 style="
@@ -133,8 +134,8 @@
                             <li class="nav-item">
                                 <a href={{ route('home') }} class="nav-link d-flex align-items-center active">
                                     <span>
-                                        <img src="../assets/pizza.png" alt="" class="img-fluid me-2" width="20"
-                                            height="20">
+                                        <img src="../../assets/pizza.png" alt="" class="img-fluid me-2"
+                                            width="20" height="20">
                                     </span>
                                     All Pizzas</a>
                             </li>
@@ -146,7 +147,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <a class="dropdown-item d-flex align-items-center" href="/user/setting">
                                         {{-- <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-box-arrow-in-right me-2"
@@ -157,7 +158,7 @@
                                                     d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                                             </svg>
                                         </span> --}}
-                                        Settings
+                                        User Settings
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

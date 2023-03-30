@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\PizzasCrudController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -44,12 +47,14 @@ Route::get('/about', function () {
 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['verified']], function () {
-        Route::group(['as' => 'pizzas.'], function () {
-            Route::group(['prefix' => 'pizza'], function () {
+    Route::get('/user/setting', [UserSettingController::class, 'index']);
+    Route::put('/user/setting/update/{id}', [UserSettingController::class, 'update']);
+    Route::group(['middleware' => ['auth']], function () {
+        Route::group(['as' => 'orders.'], function () {
+            Route::group(['prefix' => 'order'], function () {
                 Route::get('create/{id}', [PizzaController::class, 'create'])->name("create");
+                Route::post('/pizzas', [PizzaController::class, 'store'])->name('store');
             });
-            Route::post('/pizzas', [PizzaController::class, 'store'])->name('store');
         });
         Route::group(['as' => 'carts.'], function () {
             Route::get('/cart', [CartController::class, 'index'])->name('get');
@@ -57,12 +62,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name("delete");
         });
         Route::get('/home', [HomeController::class, 'index'])->name('home');
-    });
-
-    Route::group(['middleware' => ['admin'], 'as' => 'admin', 'prefix' => 'admin'], function () {
-        Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->name('pizzas.show');
-        Route::get('/pizzas', [PizzaController::class, 'index'])->name("pizzas.index");
-        Route::delete('/pizzas/{id}', [PizzaController::class, 'destroy'])->name("pizzas.destroy");
     });
 });
 Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
