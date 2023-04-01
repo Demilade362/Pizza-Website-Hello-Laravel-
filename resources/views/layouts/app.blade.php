@@ -9,10 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
-    <link rel="shortcut icon" href="{{ asset('cart4.svg') }}" type="image/x-icon">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="shortcut icon" href="{{ asset('../assets/pizza.png') }}" type="image/x-icon">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -117,18 +118,18 @@
                                         </svg>
                                     </span>
                                     Cart
-                                    @if (Auth::user())
-                                        @if (session('carts') != 0)
-                                            <div class="badge bg-danger rounded-circle ms-2"
-                                                style="
+                                    {{-- @if (Auth::user()->verified) --}}
+                                    @if (session('carts') != 0)
+                                        <div class="badge bg-danger rounded-circle ms-2"
+                                            style="
                                         position: relative;
                                         top: -8px;
 
                                     ">
-                                                {{ session('carts') ?? '0' }}
-                                            </div>
-                                        @endif
+                                            {{ session('carts') ?? '0' }}
+                                        </div>
                                     @endif
+                                    {{-- @endif --}}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -143,7 +144,12 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle active" href="#"
                                     role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     v-pre>
-                                    {{ Auth::user()->name }}
+                                    @if (Auth::user()->avatar)
+                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->avatar }}"
+                                            class="img-fluid rounded-circle ms-2" width="40" height="40">
+                                    @else
+                                        {{ Auth::user()->name }}
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

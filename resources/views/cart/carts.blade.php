@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <div class="container bg-white p-3" style="margin-top: 5rem;">
+    <div class="container bg-white p-3" style="margin-top: 5rem;" id="products">
         <div class="d-flex justify-content-between align-items-center mb-5">
             <h6 class="display-6">Your Cart</h6>
             <h6 class="text-end display-6">
@@ -48,7 +48,7 @@
                                         </form>
                                         <h5 class="lead text-end">&#8358; {{ $cart->price }}</h5>
                                     </div>
-                                    <a href="{{ route('pizzas.create', $cart->productID) }}"
+                                    <a href="{{ route('orders.create', $cart->productID) }}"
                                         class="btn btn-primary d-block">Order
                                         Pizza</a>
                                 </div>

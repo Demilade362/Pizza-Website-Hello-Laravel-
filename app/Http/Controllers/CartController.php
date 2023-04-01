@@ -22,18 +22,18 @@ class CartController extends Controller
 
     public function store()
     {
-        $addCart = new Cart();
+
 
         try {
-            $addCart->picture = request('picture');
-            $addCart->name = request('name');
-            $addCart->price = request('price');
-            $addCart->description = request('description');
-            $addCart->productID = request('productsId');
-            $addCart->usersID = Auth::user()->id;
+            Cart::create([
+                'picture' => request('picture'),
+                'name' => request('name'),
+                'price' => request('price'),
+                'description' => request('description'),
+                'productID' => request('productsId'),
+                'usersID' => Auth::user()->id,
+            ]);
             $mssg = 'success';
-
-            $addCart->save();
         } catch (\Throwable $th) {
             $mssg = "warning";
         }

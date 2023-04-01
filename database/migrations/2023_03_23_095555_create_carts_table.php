@@ -18,7 +18,7 @@ return new class extends Migration
             $table->BigInteger('usersID')->unsigned();
             $table->foreign('usersId')->references('id')->on('users')->onDelete('cascade');
             $table->string('picture');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('price');
             $table->string('description');
             $table->bigInteger('productID')->unsigned();

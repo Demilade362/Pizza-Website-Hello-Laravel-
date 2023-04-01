@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\ProductsRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Illuminate\Support\Facades\Hash;
 
 /**
- * Class UserCrudController
+ * Class ProductsCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class UserCrudController extends CrudController
+class ProductsCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,9 +26,9 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\User::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'users');
+        CRUD::setModel(\App\Models\Products::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/products');
+        CRUD::setEntityNameStrings('products', 'products');
     }
 
     /**
@@ -40,10 +39,12 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
+        CRUD::column('picture');
+        CRUD::column('description');
+        CRUD::column('price');
         CRUD::column('name');
-        CRUD::column('email');
-        CRUD::column('avatar');
-        // CRUD::column('password');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -60,21 +61,19 @@ class UserCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name')->validationRules('required|min:5');
-        CRUD::field('email')->validationRules('required|email|unique:users,email');
-        CRUD::field('password')->validationRules('required');
-
-        \App\Models\User::creating(function ($entry) {
-            $entry->password = Hash::make($entry->password);
-        });
-
-        // CRUD::field('name');
-        // CRUD::field('email');
-        // CRUD::field('password');
+        CRUD::addfield([
+            'name' => 'picture',
+            'label' => 'picture',
+            'type' => 'upload',
+            'upload' => true,
+        ]);
+        CRUD::field('description');
+        CRUD::field('price');
+        CRUD::field('name');
 
         /**
-         * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
+         * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
     }
@@ -87,17 +86,6 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('name')->validationRules('required|min:5');
-        CRUD::field('email')->validationRules('required|email|unique:users,email,' . CRUD::getCurrentEntryId());
-        CRUD::field('password')->hint('Type a password to change it.');
-
-        \App\Models\User::updating(function ($entry) {
-            if (request('password') == null) {
-                $entry->password = $entry->getOriginal('password');
-            } else {
-                $entry->password = Hash::make(request('password'));
-            }
-        });
-        // $this->setupCreateOperation();
+        $this->setupCreateOperation();
     }
 }

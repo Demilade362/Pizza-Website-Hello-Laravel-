@@ -14,9 +14,6 @@
     }
 }
 
-.card {
-    height: 600px;
-}
 
 .myContainer {
     max-width: 600px;
@@ -45,9 +42,25 @@
     height: 20rem;
 }
 
+#products {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content;
+        padding-bottom: 20px;
+    }
+}
+
 #pizza {
     margin: -590px auto 0 auto;
     z-index: 400 !important;
+
+    .card {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content;
+        padding-bottom: 20px;
+    }
 }
 
 @media screen and (max-width: 991px) {

@@ -3,7 +3,7 @@
 @section('title', 'Pizzas')
 
 @section('content')
-    <div class="container bg-white rounded" style="margin-top:5rem;">
+    <div class="container bg-white rounded" style="margin-top:5rem;" id="products">
         @if (session('mssg'))
             <div class="alert alert-success text-center">
                 <span class="lead">{{ session('mssg') }}</span>
