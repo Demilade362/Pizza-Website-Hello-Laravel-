@@ -13,10 +13,8 @@ class PizzaController extends Controller
 
     public function create($id)
     {
-        $pizzas = Product::findorFail($id);
-        return view('pizzas.create', [
-            'pizza' => $pizzas
-        ]);
+        $pizza = Product::findorFail($id);
+        return view('pizzas.create', compact('pizza'));
     }
 
 

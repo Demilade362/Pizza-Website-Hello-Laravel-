@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(Cart $cart)
     {
 
-        $cart = User::findorFail(Auth::id())->carts;
-
-        return view('cart.carts', [
-            'carts' => $cart
-        ]);
+        $carts = User::findorfail(auth()->id())->carts;
+        session(['carts' => count($carts)]);
+        return view('cart.carts', compact('carts'));
     }
 
     public function store()

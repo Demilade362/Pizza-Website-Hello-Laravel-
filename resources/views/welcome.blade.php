@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="container bg-white" id="pizza">
+    <div class="container" id="pizza">
         <h1 class="display-5 mb-5 pt-5 text-center">Order your Pizza</h1>
         <div class="row justify-content-between mb-4">
             @foreach ($products as $product)
@@ -72,7 +72,8 @@
                                     @endauth
                                     <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
                                 </div>
-                                <a href={{ route('orders.create', $product->id) }} class="btn btn-primary d-block">Order
+                                <a href={{ route('orders.create', $product->id) }}
+                                    class="btn btn-primary shadow-sm d-block">Order
                                     Pizza</a>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h6 class="display-6 text-center">How We Deliver</h6>
-                    <p class="lead text-center p-sm-3">Lorem ipsum dolor sit amet consectetur adipisicing
+                    <p class="lead text-center p-5">Lorem ipsum dolor sit amet consectetur adipisicing
                         elit.
                         Cupiditate voluptatum
                         aliquid sint tenetur cum, accusamus temporibus alias, unde excepturi sed voluptatibus! Facilis eaque
@@ -101,7 +102,7 @@
             </div>
             <div class="col-lg-6">
                 <h6 class="display-6 text-center">Why our Recipe is So Unique</h6>
-                <p class="lead text-center p-3">
+                <p class="lead text-center p-5">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus itaque sapiente accusantium
                     blanditiis architecto corrupti distinctio rem, ipsum adipisci veniam laudantium voluptas eius
                     voluptatum

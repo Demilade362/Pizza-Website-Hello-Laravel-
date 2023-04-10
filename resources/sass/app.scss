@@ -7,17 +7,26 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+.card-header {
+    background: #fff;
+    text-align: center;
+    border: none;
+}
+
 .nav-item {
     .nav-link {
-        font-variant-caps: all-small-caps;
-        font-size: 20px;
+        font-variant: small-caps;
+        font-size: 19px;
     }
 }
 
+.form-control {
+    background: #fff;
+}
 
 .myContainer {
-    max-width: 600px;
-    margin: 10rem auto;
+    max-width: 700px;
+    margin: auto !important;
 }
 
 .listContainer {
@@ -26,9 +35,9 @@
 }
 
 .carousel {
-    z-index: 0;
+    z-index: 0 !important;
+    top: -650px;
     position: relative;
-    top: -560px;
 }
 
 .carousel-item img {
@@ -51,9 +60,11 @@
     }
 }
 
+
 #pizza {
-    margin: -590px auto 0 auto;
+    margin: -650px auto 0 auto;
     z-index: 400 !important;
+    background: #fff;
 
     .card {
         display: grid;

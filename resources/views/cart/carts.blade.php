@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <div class="container bg-white p-3" style="margin-top: 5rem;" id="products">
+    <div class="container bg-white p-3" id="products">
         <div class="d-flex justify-content-between align-items-center mb-5">
             <h6 class="display-6">Your Cart</h6>
             <h6 class="text-end display-6">

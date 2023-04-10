@@ -1,11 +1,11 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('title', 'Order Pizza')
 
 @section('content')
     <div class="my-5 myContainer">
-        <div class="form bg-white p-5 border-2">
-            <h1 class="text-center mb-3 display-4">Order Your Pizza</h1>
+        <div class="form bg-white p-2 border-2">
+            <h1 class="text-center mb-3">Order Your Pizza</h1>
             @if ($pizza)
                 <form action={{ route('orders.store') }} method="POST">
                     @csrf
@@ -14,9 +14,8 @@
                         <p class="text-danger">{{ $errors->first('name') }}</p>
                     @endif
                     <label for="type" class="form-label">Pizza Type:</label>
-                    <select name="type" id="type" class="form-select mb-3">
-                        <option value="{{ $pizza->name }}">{{ $pizza->name }}</option>
-                    </select>
+                    <input name="type" id="type" class="form-control mb-3" value="{{ $pizza->name }}" disabled
+                        readonly>
                     @if ($errors->has('type'))
                         <p class="text-danger">{{ $errors->first('type') }}</p>
                     @endif

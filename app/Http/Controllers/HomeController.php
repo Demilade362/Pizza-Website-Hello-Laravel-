@@ -32,9 +32,7 @@ class HomeController extends Controller
         session(['carts' => count($carts)]);
 
         $products = $product->latest()
-            ->get();
-        return view('home', [
-            "products" => $products
-        ]);
+            ->paginate(6);
+        return view('home', compact('products'));
     }
 }

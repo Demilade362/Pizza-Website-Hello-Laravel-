@@ -3,7 +3,7 @@
 @section('title', 'About')
 
 @section('content')
-    <div class="container mb-5 p-5 bg-white" style="margin-top: 4rem">
+    <div class="container mb-5 p-5 bg-white">
         <h6 class="h1 text-center">
             About PizzaHouse
         </h6>

@@ -5,7 +5,8 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('pizzas') }}"><i class="nav-icon la la-home"></i>
         Orders</a></li>
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> Users</a>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i>
+        Users</a>
 </li>
 
 

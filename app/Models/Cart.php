@@ -10,6 +10,8 @@ class Cart extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected $fillable = [
         'picture',
         'name',

@@ -13,6 +13,8 @@ class Pizza extends Model
         'toppings' => 'array',
     ];
 
+    protected $guarded = ['id'];
+
     protected $fillable = [
         'name',
         'type',

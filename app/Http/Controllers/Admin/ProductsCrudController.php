@@ -64,7 +64,9 @@ class ProductsCrudController extends CrudController
         CRUD::addfield([
             'name' => 'picture',
             'label' => 'picture',
+            'path' => 'public/admin',
             'type' => 'upload',
+            'disk' => 'public',
             'upload' => true,
         ]);
         CRUD::field('description');

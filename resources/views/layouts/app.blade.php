@@ -19,9 +19,10 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-white">
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white
+        sticky-top" id="nav">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="../../assets/pizza.png" class="img-fluid mb-2" width="40" height="40"
@@ -118,25 +119,25 @@
                                         </svg>
                                     </span>
                                     Cart
-                                    {{-- @if (Auth::user()->verified) --}}
-                                    @if (session('carts') != 0)
-                                        <div class="badge bg-danger rounded-circle ms-2"
-                                            style="
+                                    @if (Auth::user())
+                                        @if (session('carts') != 0)
+                                            <div class="badge bg-danger rounded-circle ms-2"
+                                                style="
                                         position: relative;
                                         top: -8px;
 
                                     ">
-                                            {{ session('carts') ?? '0' }}
-                                        </div>
+                                                {{ session('carts') ?? '0' }}
+                                            </div>
+                                        @endif
                                     @endif
-                                    {{-- @endif --}}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href={{ route('home') }} class="nav-link d-flex align-items-center active">
                                     <span>
-                                        <img src="../../assets/pizza.png" alt="" class="img-fluid me-2"
-                                            width="20" height="20">
+                                        {{-- <img src="../../assets/pizza.png" alt="" class="img-fluid me-2"
+                                            width="20" height="20"> --}}
                                     </span>
                                     All Pizzas</a>
                             </li>
@@ -145,8 +146,9 @@
                                     role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     v-pre>
                                     @if (Auth::user()->avatar)
-                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->avatar }}"
-                                            class="img-fluid rounded-circle ms-2" width="40" height="40">
+                                        <img src="../../storage/avatars/{{ Auth::id() }}/{{ Auth::user()->avatar }}"
+                                            alt="{{ Auth::user()->avatar }}" class="img-fluid rounded-circle ms-2"
+                                            width="28" height="28">
                                     @else
                                         {{ Auth::user()->name }}
                                     @endif
@@ -154,16 +156,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item d-flex align-items-center" href="/user/setting">
-                                        {{-- <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-box-arrow-in-right me-2"
-                                                viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                            </svg>
-                                        </span> --}}
+                                        <span>
+                                            {{-- <svg xmins="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
+                                            </svg> --}}
+                                        </span>
                                         User Settings
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
@@ -198,7 +195,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-white p-5 mt-5">
+        <footer class="bg-light p-5 mt-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 d-flex align-items-center">

@@ -24,7 +24,7 @@ class usersetting extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|min:5',
-            'avatar' => 'mimes:jpg,jpeg,jfif,png|max:7000'
+            'avatar' => 'mimes:jpg,jpeg,jfif,png,svg|max:7000',
         ];
     }
 }
