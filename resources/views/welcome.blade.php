@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="container" id="pizza">
-        <h1 class="display-5 mb-5 pt-5 text-center">Order your Pizza</h1>
+        <h6 class="display-6 mb-5 pt-5 text-center text-uppercase">Our products</h6>
         <div class="row justify-content-between mb-4">
             @foreach ($products as $product)
                 <div class="col-lg-4">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <h5>{{ $product->name }}</h5>
+                                <h4>{{ $product->name }}</h4>
                                 <p>{{ $product->description }}</p>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     @auth
@@ -73,7 +73,7 @@
                                     <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
                                 </div>
                                 <a href={{ route('orders.create', $product->id) }}
-                                    class="btn btn-primary shadow-sm d-block">Order
+                                    class="btn btn-warning shadow-sm d-block">Order
                                     Pizza</a>
                             </div>
                         </div>
@@ -84,8 +84,8 @@
         <div class="mt-4">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h6 class="display-6 text-center">How We Deliver</h6>
-                    <p class="lead text-center p-5">Lorem ipsum dolor sit amet consectetur adipisicing
+                    <h6 class="h1 text-center">How We Deliver Quickly</h6>
+                    <p class="lead text-center p-2">Lorem ipsum dolor sit amet consectetur adipisicing
                         elit.
                         Cupiditate voluptatum
                         aliquid sint tenetur cum, accusamus temporibus alias, unde excepturi sed voluptatibus! Facilis eaque
@@ -101,8 +101,8 @@
                 <img src="assets/order.jpg" class="img-fluid">
             </div>
             <div class="col-lg-6">
-                <h6 class="display-6 text-center">Why our Recipe is So Unique</h6>
-                <p class="lead text-center p-5">
+                <h6 class="h1 text-center">Why our Recipe is So Unique</h6>
+                <p class="lead text-center p-2">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus itaque sapiente accusantium
                     blanditiis architecto corrupti distinctio rem, ipsum adipisci veniam laudantium voluptas eius
                     voluptatum

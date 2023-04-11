@@ -3,9 +3,9 @@
 @section('title', 'Order Pizza')
 
 @section('content')
-    <div class="my-5 myContainer">
-        <div class="form bg-white p-2 border-2">
-            <h1 class="text-center mb-3">Order Your Pizza</h1>
+    <div class="my-5 myContainer p-3">
+        <div class="form bg-white border-2">
+            <h1 class="text-end mb-3">Order Your Pizza</h1>
             @if ($pizza)
                 <form action={{ route('orders.store') }} method="POST">
                     @csrf
@@ -43,7 +43,7 @@
                     </fieldset>
                     <input type="hidden" name="price" value="{{ $pizza->price }}">
                     <p class="lead">Price: &#8358;{{ $pizza->price }}</p>
-                    <input type="submit" value="Order Pizza" class="btn btn-primary col-12">
+                    <input type="submit" value="Order Pizza" class="btn btn-warning col-12">
                 @else
                     <p class="text-center">We don't Offer that type of pizza</p>
             @endif

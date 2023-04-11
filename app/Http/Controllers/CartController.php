@@ -13,8 +13,13 @@ class CartController extends Controller
     public function index(Cart $cart)
     {
 
-        $carts = User::findorfail(auth()->id())->carts;
-        session(['carts' => count($carts)]);
+        $carts = $cart->where('usersID', auth()->id())->with('user')->paginate(6);
+        if (Schema::hasTable('carts')) {
+            $cart = $cart->where('usersID', Auth::id())
+                ->orderBy('id', 'DESC')
+                ->lazy();
+        }
+        session(['carts' => count($cart)]);
         return view('cart.carts', compact('carts'));
     }
 

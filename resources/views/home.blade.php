@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-content">
                             <div class="card-body">
-                                <h5>{{ $product->name }}</h5>
+                                <h4>{{ $product->name }}</h4>
                                 <p>{{ $product->description }}</p>
                                 <div class="d-flex align-items-center justify-content-between mb-4">
                                     <form action="{{ route('carts.post') }}" method="POST">
@@ -42,7 +42,7 @@
                                     <h5 class="lead text-end">&#8358; {{ $product->price }}</h5>
                                 </div>
                                 <a href={{ route('orders.create', $product->id) }}
-                                    class="btn btn-primary shadow-sm d-block">Order
+                                    class="btn btn-warning shadow-sm d-block">Order
                                     Pizza</a>
                             </div>
                         </div>

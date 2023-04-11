@@ -33,7 +33,7 @@
                         @endif
                         <label for="" class="form-label">Upload Profile Picture: </label>
                         <input type="file" name="avatar" id="avatar" class="form-control mb-3">
-                        <button type="submit" class="btn btn-primary col-12">Update Profile</button>
+                        <button type="submit" class="btn btn-warning col-12">Update Profile</button>
                     </form>
                 </div>
             </div>
