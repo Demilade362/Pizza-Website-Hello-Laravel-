@@ -13,7 +13,7 @@ class CartController extends Controller
     public function index(Cart $cart)
     {
 
-        $carts = $cart->where('usersID', auth()->id())->with('user')->paginate(6);
+        $carts = $cart->where('usersID', auth()->id())->with('user')->latest()->paginate(6);
         if (Schema::hasTable('carts')) {
             $cart = $cart->where('usersID', Auth::id())
                 ->orderBy('id', 'DESC')

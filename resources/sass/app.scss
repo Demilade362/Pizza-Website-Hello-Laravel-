@@ -63,13 +63,33 @@
 
 #pizza {
     margin: -650px auto 0 auto;
-    // z-index: 400 !important;
     background: #fff;
 
     .card {
+        height: 600px !important;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: max-content;
+        grid-template-rows: 1fr;
+        padding-bottom: 20px;
+    }
+}
+
+#cart {
+    .card {
+        height: 600px !important;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        padding-bottom: 20px;
+    }
+}
+
+#home {
+    .card {
+        height: 600px !important;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
         padding-bottom: 20px;
     }
 }

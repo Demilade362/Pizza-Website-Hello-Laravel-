@@ -9,7 +9,7 @@
                 <span class="lead">{{ session('mssg') }}</span>
             </div>
         @endif
-        <div class="row justify-content-between mb-4">
+        <div class="row justify-content-between mb-4" id="home">
             @foreach ($products as $product)
                 <div class="col-lg-4">
                     <div class="card mb-4 shadow-sm">

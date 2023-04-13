@@ -39,7 +39,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav 
+                        @guest ms-auto @endguest
+                    ">
                         <li class="nav-item">
                             <a href="/" class="nav-link active d-flex align-items-center">
                                 <span>
@@ -58,11 +60,9 @@
                             <a href="{{ route('about') }}" class="nav-link active d-flex align-items-center">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-journal me-2" viewBox="0 0 16 16">
+                                        fill="currentColor" class="bi bi-chat me-2" viewBox="0 0 16 16">
                                         <path
-                                            d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                        <path
-                                            d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                                            d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
                                     </svg>
                                 </span>
                                 <span>
@@ -70,10 +70,26 @@
                                 </span>
                             </a>
                         </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href={{ route('home') }} class="nav-link d-flex align-items-center active">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-bag me-2" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                        </svg>
+                                    </span>
+                                    All Pizzas</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
+                    <ul
+                        class="navbar-nav 
+                        @auth ms-auto @endauth
+                    align-items-center">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -98,11 +114,9 @@
                                     <a class="nav-link active" href="{{ route('register') }}">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-journal me-2" viewBox="0 0 16 16">
+                                                fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                                                 <path
-                                                    d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                                <path
-                                                    d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+                                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
                                             </svg>
                                         </span>
                                         {{ __('Register') }}</a>
@@ -110,18 +124,18 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="{{ route('carts.get') }}" class="nav-link active d-flex align-items-center">
+                                <a href="{{ route('carts.get') }}" class="nav-link active">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-cart4 me-2" viewBox="0 0 16 16">
+                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
                                                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                                         </svg>
                                     </span>
-                                    Cart
+                                    {{-- Cart --}}
                                     @if (Auth::user())
                                         @if (session('carts') != 0)
-                                            <div class="badge bg-danger rounded-pill ms-2"
+                                            <div class="badge bg-danger rounded ms-1"
                                                 style="
                                         position: relative;
                                         top: -8px;
@@ -132,14 +146,6 @@
                                         @endif
                                     @endif
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href={{ route('home') }} class="nav-link d-flex align-items-center active">
-                                    <span>
-                                        {{-- <img src="../../assets/pizza.png" alt="" class="img-fluid me-2"
-                                            width="20" height="20"> --}}
-                                    </span>
-                                    All Pizzas</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle active" href="#"

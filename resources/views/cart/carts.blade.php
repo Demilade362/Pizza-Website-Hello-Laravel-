@@ -20,7 +20,7 @@
                 <span>Cannot Add the Same Product to Cart</span>
             </div>
         @endif
-        <div class="row justify-content-between">
+        <div class="row justify-content-between" id="cart">
             @if ($carts)
                 @foreach ($carts as $cart)
                     <div class="col-lg-4">

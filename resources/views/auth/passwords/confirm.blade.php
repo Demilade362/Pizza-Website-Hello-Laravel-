@@ -3,14 +3,14 @@
 @section('title', 'Comfirm Password')
 
 @section('content')
-    <div class="container" style="margin: 10rem auto">
+    <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
                 <div class="card">
-                    <div class="card-header mt-3 h3 text-start">{{ __('Confirm Password') }}</div>
+                    <div class="card-header mt-3 h3 text-center">{{ __('Confirm Password') }}</div>
 
                     <div class="card-body">
-                        <p class="lead">
+                        <p class="lead text-center">
                             {{ __('Please confirm your password before continuing.') }}
                         </p>
 

@@ -22,32 +22,34 @@ use Illuminate\Support\Facades\Schema;
 |
 */
 
-Route::get('/', function (Cart $cart, Product $product) {
-    $products = $product->latest()
-        ->take(6)
-        ->get();
-
-    if (Schema::hasTable('carts')) {
-        $cart = $cart->where('usersID', Auth::id())
-            ->orderBy('id', 'DESC')
-            ->lazy();
-    }
-    session(['carts' => count($cart)]);
-    return view('welcome', [
-        'products' => $products
-    ]);
-});
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::withoutMiddleware(['auth', 'verified'])->group(function () {
+        Route::get('/', function (Cart $cart, Product $product) {
+            $products = $product->latest()
+                ->take(6)
+                ->get();
+
+            if (Schema::hasTable('carts')) {
+                $cart = $cart->where('usersID', Auth::id())
+                    ->orderBy('id', 'DESC')
+                    ->lazy();
+            }
+            session(['carts' => count($cart)]);
+            return view('welcome', [
+                'products' => $products
+            ]);
+        });
+        Route::get('/about', function () {
+            return view('about');
+        })->name('about');
+    });
     Route::group(['middleware' => ['password.confirm']], function () {
         Route::get('/user/setting', [UserSettingController::class, 'index']);
         Route::put('/user/setting/update/{id}', [UserSettingController::class, 'update']);
     });
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth', 'password.confirm']], function () {
         Route::group(['as' => 'orders.'], function () {
             Route::group(['prefix' => 'order'], function () {
                 Route::get('create/{id}', [PizzaController::class, 'create'])->name("create");
